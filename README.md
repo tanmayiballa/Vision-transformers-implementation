@@ -78,7 +78,14 @@ _Results & Discussions:_
 | CIFAR10 | 20	| 43.78 | 63.30(0.24)|	75.32(0.27) |
 
 
-As depicted in the table above, the performance of our model on MNIST and Hurricane Damage dataset has been decent. The top2 accuracy of MNIST has reached around **97% for 20 epochs** with a mean difference of 0.43. The effective background foreground distinction in the MNIST dataset might also be a major boost for the model performance. The training and testing accuracies of MNIST and CIFAR10 throughout the training are depicted in Fig.4. and Fig.5. Though the model was able to generalize well for the MNIST dataset, it seemed to overfit on CIFAR10. The same is discussed in the gradient saturation for CIFAR10, in the later part of this section.
+As depicted in the table above, the performance of our model on MNIST and Hurricane Damage dataset has been decent. The top2 accuracy of MNIST has reached around **97% for 20 epochs** with a mean difference of 0.43. The effective background foreground distinction in the MNIST dataset might also be a major boost for the model performance. 
+
+### Training and testing accuracies
+MNIST             |  CIFAR10
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/Comparison%20of%20training%20and%20testing%20accuracies%20for%20MNIST.png) | ![alt text](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/Comparison%20of%20training%20and%20testing%20accuracies%20for%20CIFAR10.png)
+
+The training and testing accuracies of MNIST and CIFAR10 throughout the training are depicted in Fig.4. and Fig.5. Though the model was able to generalize well for the MNIST dataset, it seemed to overfit on CIFAR10. The same is discussed in the gradient saturation for CIFAR10, in the later part of this section.
 
 However, the model failed to perform well on CIFAR10 dataset. Hence, we have tried to implement a few techniques to improve the model accuracy, which are listed below.
 
