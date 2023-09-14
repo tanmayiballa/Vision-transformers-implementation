@@ -1,15 +1,30 @@
 # Vision-transformers-implementation
 Implementation of Vision Transformers from scratch.
 
-**Abstract** Vision Transformers (ViTs) have been the major focus in the field of computer vision after they have demonstrated promising results in natural language processing. In this project, we have implemented a vision transformer using PyTorch for image classification, with a focus on efficiency and reduced complexity. The motivation behind ViTs is the need for object recognition models that can handle variable-sized inputs and model long-range dependencies. While CNNs have been successful in this field, we explored the potential of vision transformers and aimed to reduce their computational overhead. The focus of this project is on the following research question: Can we reduce the complexity of the model while maintaining decent accuracy? Our base model consists of minimal encoder blocks and a reduced number of parameters, which enabled us to perform training using little computational complexity. We were able to achieve good results with just 15-20 training epochs. We tested our model on different types of classification tasks that include datasets such as CIFAR10, MNIST, and Satellite Imagery. The performance of our base model on MNIST and Satellite Imagery has been significant with an accuracy of about 91% on MNIST and 85% on Satellite Imagery. Additionally, we performed hyperparameter tuning to further improve the efficiency of the base model. We further tried various techniques such as augmentation, etc., and commented on a few findings regarding the same. In a nutshell, we have demonstrated that a simplified vision transformer can still achieve good results in image classification tasks for simpler datasets.
+**Abstract** 
+
+Vision Transformers (ViTs) have been the major focus in the field of computer vision after they have demonstrated promising results in natural language processing. In this project, we have implemented a vision transformer using PyTorch for image classification, with a focus on efficiency and reduced complexity. The motivation behind ViTs is the need for object recognition models that can handle variable-sized inputs and model long-range dependencies. While CNNs have been successful in this field, we explored the potential of vision transformers and aimed to reduce their computational overhead. The focus of this project is on the following research question: Can we reduce the complexity of the model while maintaining decent accuracy? Our base model consists of minimal encoder blocks and a reduced number of parameters, which enabled us to perform training using little computational complexity. We were able to achieve good results with just 15-20 training epochs. We tested our model on different types of classification tasks that include datasets such as CIFAR10, MNIST, and Satellite Imagery. The performance of our base model on MNIST and Satellite Imagery has been significant with an accuracy of about 91% on MNIST and 85% on Satellite Imagery. Additionally, we performed hyperparameter tuning to further improve the efficiency of the base model. We further tried various techniques such as augmentation, etc., and commented on a few findings regarding the same. In a nutshell, we have demonstrated that a simplified vision transformer can still achieve good results in image classification tasks for simpler datasets.
 
 **Model Architecture**
+
+![Flowchart of the model](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/Flowchart.png)
+
+**Sample Image Patching**
+
+![Alt text](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/Image_patching.jpg)
 
 **Implementation**
 
 We have implemented our base model using PyTorch. The input images (H*W*C) are divided into non-overlapping patches with a patch size of 4 (P*P*C); flattened into a 1D sequence of tokens; and linearly projected to the lower dimensional space. nn.linear function in PyTorch is used for these projections. The positional encodings are added to these linear embeddings along with the classification token. Further, these embeddings are passed through the layer normalization of the encoder block. We’ve used nn.LayerNorm function in PyTorch for this and passed through the self-attention layer which is carried out via PyTorch’s nn.MultiheadAttention function. These are further processed through the fully connected layers and MLP Classifier block, both of which were created using nn.Linear function from PyTorch.
 
+**PyTorch model**
+
+
+![Flowchart of the model](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/model.png))
+
 **Model Training**
+
+
 The training is performed using nn.module class in Pytorch. This module is popular for creating deep learning models since it automatically computes the gradients as the autograd system in Pytorch. We have created a custom class of nn.module, defined the optimizers and loss functions, and implemented the transformer architecture in the forward pass of nn.module.
  
 We have used an Adam optimizer for effective convergence of the model, which is a gradient- descent based optimizer, that is known for constantly updating the learning rate for each parameter of the model, based on the gradients. This adaptive learning rate helps the model in efficient convergence. Cross-entropy loss function is used during the training. The parameters of our base model are clearly depicted in Table 1.
@@ -33,6 +48,8 @@ the prediction as the correct prediction, even if the model has computed the sec
 4. The top2 and top3 accuracies are mentioned along with the mean difference of the second/third-highest probability with the maximum probability.
 
 _Results & Discussions:_
+
+![Alt text](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/results.jpg)
 
 As depicted in the table above, the performance of our model on MNIST and Hurricane Damage dataset has been decent. The top2 accuracy of MNIST has reached around **97% for 20 epochs** with a mean difference of 0.43. The effective background foreground distinction in the MNIST dataset might also be a major boost for the model performance. The training and testing accuracies of MNIST and CIFAR10 throughout the training are depicted in Fig.4. and Fig.5. Though the model was able to generalize well for the MNIST dataset, it seemed to overfit on CIFAR10. The same is discussed in the gradient saturation for CIFAR10, in the later part of this section.
 
