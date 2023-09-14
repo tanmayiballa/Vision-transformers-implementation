@@ -29,6 +29,18 @@ The training is performed using nn.module class in Pytorch. This module is popul
  
 We have used an Adam optimizer for effective convergence of the model, which is a gradient- descent based optimizer, that is known for constantly updating the learning rate for each parameter of the model, based on the gradients. This adaptive learning rate helps the model in efficient convergence. Cross-entropy loss function is used during the training. The parameters of our base model are clearly depicted in Table 1.
 
+**Table 1**
+| Parameter name  | Parameter value |
+| -------  | - |
+| Patch-size  | 4 |
+| Batch-size | 32 |
+| Embed dimensions  | 128  |
+| Hidden dimensions  | 256  |
+| Encoder blocks  | 2  |
+| n_heads in encoder  | 4  |
+| Loss  | Cross Entropy Loss  |
+
+
 **Experimental Results**
 
 _Dataset:_
@@ -50,6 +62,21 @@ the prediction as the correct prediction, even if the model has computed the sec
 _Results & Discussions:_
 
 ![Alt text](https://github.com/tanmayiballa/Vision-transformers-implementation/blob/main/Materials/results.jpg)
+
+**Table 2**
+
+| Model	| Epochs | Total Accuracy (%) | Top2 accuracy % (with avg. difference from top1) | Top2 accuracy % (with avg. difference from top1)|
+| ---- | ----- | ------------------ | ---------------------------------------------- | ------------------------------------------------|
+| MNIST | 10	| 90.28 | 96.89(0.42)|	98.62(0.44) |
+| MNIST | 15	| 91.18	| 96.92(0.44)|	98.61(0.45) | 
+| MNIST | 20	| 91.47 | 97.57(0.43)|	99.09(0.46) |
+| Hurricane damage | 10	| 84.24 | NA |	NA |
+| Hurricane damage | 15	| 85.98	| NA |	NA | 
+| Hurricane damage | 20	| 85.87 | NA |	NA |
+| CIFAR10 | 10	| 42.32 | 62.48(0.19)|	74.29(0.21) |
+| CIFAR10 | 15	| 43.43	| 63.32(0.2)|	75.18(0.24) | 
+| CIFAR10 | 20	| 43.78 | 63.30(0.24)|	75.32(0.27) |
+
 
 As depicted in the table above, the performance of our model on MNIST and Hurricane Damage dataset has been decent. The top2 accuracy of MNIST has reached around **97% for 20 epochs** with a mean difference of 0.43. The effective background foreground distinction in the MNIST dataset might also be a major boost for the model performance. The training and testing accuracies of MNIST and CIFAR10 throughout the training are depicted in Fig.4. and Fig.5. Though the model was able to generalize well for the MNIST dataset, it seemed to overfit on CIFAR10. The same is discussed in the gradient saturation for CIFAR10, in the later part of this section.
 
